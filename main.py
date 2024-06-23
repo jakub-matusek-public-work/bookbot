@@ -1,8 +1,7 @@
 def main():
     text = get_book_text("books/frankenstein.txt")
     print(text)
-    print("The book contains",number_of_words(text),"words")
-    print("The frequency of letters is:",frequency_of_letters(text))
+    report(text)
 
 def get_book_text(path):
     with open(path) as f:
@@ -44,5 +43,14 @@ def frequency_of_letters(text):
         if letter.isalpha():
             frequency_dictionary[letter.lower()] += 1
     return frequency_dictionary
+
+def report(text):
+    print("--- Begin report of books/frankenstein.txt ---")
+    print("The book contains",number_of_words(text),"words")
+    print("")
+    frequency_dictionary = frequency_of_letters(text)
+    for key, value in frequency_dictionary.items():
+        print("The '%s' character was found %d times" % (key, value))
+    print("--- End report ---")
 
 main()
